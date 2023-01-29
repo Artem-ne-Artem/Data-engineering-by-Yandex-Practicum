@@ -1,5 +1,4 @@
 import logging
-
 import pendulum
 from airflow.decorators import dag, task
 from examples.stg.bonus_system_ranks_dag.ranks_loader import RankLoader
@@ -10,7 +9,7 @@ log = logging.getLogger(__name__)
 
 @dag(
     schedule_interval='0/15 * * * *',  # Задаем расписание выполнения дага - каждый 15 минут.
-    start_date=pendulum.datetime(2022, 5, 5, tz="UTC"),  # Дата начала выполнения дага. Можно поставить сегодня.
+    start_date=pendulum.datetime(2023, 1, 23, tz="UTC"),  # Дата начала выполнения дага. Можно поставить сегодня.
     catchup=False,  # Нужно ли запускать даг за предыдущие периоды (с start_date до сегодня) - False (не нужно).
     tags=['sprint5', 'stg', 'origin', 'example'],  # Теги, используются для фильтрации в интерфейсе Airflow.
     is_paused_upon_creation=True  # Остановлен/запущен при появлении. Сразу запущен.

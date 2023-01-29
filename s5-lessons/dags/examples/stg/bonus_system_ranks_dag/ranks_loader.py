@@ -1,6 +1,5 @@
 from logging import Logger
 from typing import List
-
 from examples.stg import EtlSetting, StgEtlSettingsRepository
 from lib import PgConnect
 from lib.dict_util import json2str
