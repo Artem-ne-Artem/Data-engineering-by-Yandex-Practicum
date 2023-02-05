@@ -1,5 +1,4 @@
 from typing import Dict, Optional
-
 from psycopg import Connection
 from psycopg.rows import class_row
 from pydantic import BaseModel

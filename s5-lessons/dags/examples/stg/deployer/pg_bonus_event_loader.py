@@ -1,12 +1,12 @@
 from datetime import datetime, timedelta
 from logging import Logger
 from typing import Dict, List
-
 from lib import PgConnect
 from lib.dict_util import json2str
 from psycopg import Connection
 from psycopg.rows import class_row
 from pydantic import BaseModel
+
 from examples.stg.stg_settings_repository import EtlSetting, StgEtlSettingsRepository
 
 

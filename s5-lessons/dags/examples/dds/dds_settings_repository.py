@@ -1,5 +1,4 @@
 from typing import Dict, Optional
-
 from lib.dict_util import json2str
 from psycopg import Connection
 from psycopg.rows import class_row
