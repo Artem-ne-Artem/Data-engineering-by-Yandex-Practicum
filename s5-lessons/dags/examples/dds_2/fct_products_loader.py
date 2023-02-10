@@ -2,16 +2,15 @@ import json
 import logging
 from datetime import datetime
 from typing import Dict, List, Tuple
+
 from lib import PgConnect
 from psycopg import Connection
-from psycopg.rows import class_row
 from pydantic import BaseModel
 
-from examples.dds.deployer.bonus_event_repository import BonusEventRepository
-from examples.dds.deployer.order_repositories import OrderDdsRepository
-from examples.dds.deployer.product_loader import ProductDdsObj, ProductDdsRepository
-
-from examples.dds.dds_settings_repository import DdsEtlSettingsRepository, EtlSetting
+from examples.dds_2.bonus_event_repository import BonusEventRepository
+from examples.dds_2.dds_settings_repository import DdsEtlSettingsRepository, EtlSetting
+from examples.dds_2.order_repositories import OrderDdsRepository
+from examples.dds_2.products_loader import ProductDdsObj, ProductDdsRepository
 
 log = logging.getLogger(__name__)
 

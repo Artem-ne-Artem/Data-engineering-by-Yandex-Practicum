@@ -6,9 +6,9 @@ from psycopg import Connection
 from psycopg.rows import class_row
 from pydantic import BaseModel
 
-from examples.dds.deployer.restaurant_loader import RestaurantDdsRepository, RestaurantJsonObj, RestaurantRawRepository
+from examples.dds_2.dds_settings_repository import DdsEtlSettingsRepository, EtlSetting
+from examples.dds_2.restaurant_loader import (RestaurantDdsRepository, RestaurantJsonObj, RestaurantRawRepository)
 
-from examples.dds.dds_settings_repository import DdsEtlSettingsRepository, EtlSetting
 
 class ProductDdsObj(BaseModel):
     id: int

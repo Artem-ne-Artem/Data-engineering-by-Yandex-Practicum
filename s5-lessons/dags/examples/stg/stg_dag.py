@@ -89,21 +89,21 @@ def stg_dag():
         orders_loader.load_order()
 
     # Инициализируем объявленные таски.
-    # init_schema = schema_init()
-    # pg_ranks = pg_load_ranks()
-    # pg_users = pg_load_users()
+    init_schema = schema_init()
+    pg_ranks = pg_load_ranks()
+    pg_users = pg_load_users()
     pg_events = pg_load_events()
-    # mg_restaurants = mg_load_restaurants()
-    # mg_users = mg_load_users()
-    # mg_orders = mg_load_orders()
+    mg_restaurants = mg_load_restaurants()
+    mg_users = mg_load_users()
+    mg_orders = mg_load_orders()
 
-    # init_schema # type: ignore
-    # pg_ranks  # type: ignore
-    # pg_users  # type: ignore
+    init_schema # type: ignore
+    pg_ranks  # type: ignore
+    pg_users  # type: ignore
     pg_events  # type: ignore
-    # mg_restaurants  # type: ignore
-    # mg_users  # type: ignore
-    # mg_orders  # type: ignore
+    mg_restaurants  # type: ignore
+    mg_users  # type: ignore
+    mg_orders  # type: ignore
 
 
 stg_dag = stg_dag()
