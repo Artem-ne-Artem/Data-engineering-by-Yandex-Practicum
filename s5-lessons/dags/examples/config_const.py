@@ -14,3 +14,9 @@ class ConfigConst:
     PG_ORIGIN_PASSWORD = "PG_ORIGIN_PASSWORD"
     PG_ORIGIN_PORT = "PG_ORIGIN_PORT"
     PG_ORIGIN_USER = "PG_ORIGIN_USER"
+
+    REST_HEADERS = {
+        "X-API-KEY": '25c27781-8fde-4b30-a22e-524044a7580f',
+        "X-Nickname": 'ddd.z.2000',
+        "X-Cohort": '8'
+    }

@@ -1,17 +1,3 @@
-from lib import PgConnect
-
-
-class SchemaDdl:
-    def __init__(self, pg: PgConnect) -> None:
-        self._db = pg
-
-    def init_schema(self) -> None:
-        with self._db.connection() as conn:
-            with conn.cursor() as cur:
-                cur.execute(
-                    """
-CREATE SCHEMA IF NOT EXISTS cdm;
-
 CREATE TABLE IF NOT EXISTS cdm.dm_settlement_report (
     id int NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     restaurant_id VARCHAR NOT NULL,
@@ -34,5 +20,3 @@ DO $do$ BEGIN IF EXISTS (
 GRANT SELECT ON all tables IN SCHEMA cdm TO sp5_de_tester;
 END IF;
 END $do$;
-"""
-                )

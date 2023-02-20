@@ -3,7 +3,7 @@ import pendulum
 from airflow.decorators import dag, task
 from airflow.models.variable import Variable
 
-from lib import ConnectionBuilder, MongoConnect
+from lib import ConnectionBuilder, MongoConnect, ApiConnect
 from examples.config_const import ConfigConst
 
 from examples.stg.deployer.pg_bonus_ranks_loader import RankLoader
@@ -13,6 +13,8 @@ from examples.stg.deployer.mg_restaurants_loader import MG_RestaurantLoader, Res
 from examples.stg.deployer.mg_users_loader import MG_UserLoader, UserOriginRepository, UserDestRepository
 from examples.stg.deployer.mg_orders_loader import MG_OrderLoader, OrderOriginRepository, OrderDestRepository
 from examples.stg.deployer.schema_init import SchemaDdl
+from examples.stg.deployer.rest_couriers_loader import REST_CourierLoader, CourierDestRepository, CourierOriginRepository
+from examples.stg.deployer.rest_deliveries_loader import REST_DeliveryLoader, DeliveryDestRepository, DeliveryOriginRepository
 
 log = logging.getLogger(__name__)
 
@@ -88,6 +90,21 @@ def stg_dag():
         orders_loader = MG_OrderLoader(orders_collection_reader, dwh_pg_connect, orders_pg_saver, log)
         orders_loader.load_order()
 
+    @task(task_id="rest_couriers_load")
+    def rest_couriers_load():
+        couriers_pg_saver = CourierDestRepository()
+        couriers_collection_reader = CourierOriginRepository()
+        couriers_loader = REST_CourierLoader(couriers_collection_reader, dwh_pg_connect, couriers_pg_saver, log)
+        couriers_loader.load_courier()
+
+    @task(task_id="rest_deliveries_load")
+    def rest_deliveries_load():
+        deliveries_pg_saver = DeliveryDestRepository()
+        deliveries_collection_reader = DeliveryOriginRepository()
+        deliveries_loader = REST_DeliveryLoader(deliveries_collection_reader, dwh_pg_connect, deliveries_pg_saver, log)
+        deliveries_loader.load_delivery()
+
+
     # Инициализируем объявленные таски.
     init_schema = schema_init()
     pg_ranks = pg_load_ranks()
@@ -96,6 +113,8 @@ def stg_dag():
     mg_restaurants = mg_load_restaurants()
     mg_users = mg_load_users()
     mg_orders = mg_load_orders()
+    rest_couriers = rest_couriers_load()
+    rest_deliveries = rest_deliveries_load()
 
     init_schema # type: ignore
     pg_ranks  # type: ignore
@@ -104,6 +123,7 @@ def stg_dag():
     mg_restaurants  # type: ignore
     mg_users  # type: ignore
     mg_orders  # type: ignore
-
+    rest_couriers
+    rest_deliveries
 
 stg_dag = stg_dag()
