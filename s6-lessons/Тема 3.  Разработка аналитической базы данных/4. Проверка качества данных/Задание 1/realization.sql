@@ -1,0 +1,1 @@
+select count(id) as total,count(distinct id) as uniq from DDDZ2000YANDEXRU__STAGING.users u limit 5
